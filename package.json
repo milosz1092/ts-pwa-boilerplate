@@ -1,0 +1,38 @@
+{
+    "name": "ts-pwa-boilerplate",
+    "version": "1.0.0",
+    "description": "Boilerplate for PWA application.",
+    "main": "index.js",
+    "scripts": {
+        "build:prod": "webpack --config webpack/config/prod.config.js",
+        "build:dev": "webpack --config webpack/config/dev.config.js",
+        "start": "webpack-dev-server --config webpack/config/dev.config.js --open",
+        "start:remote": "webpack-dev-server --config webpack/config/dev_remote.config.js --open"
+    },
+    "author": "Milosz Szewczyk",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^12.0.0",
+        "@types/react": "^16.8.17",
+        "@types/react-dom": "^16.8.4",
+        "clean-webpack-plugin": "^2.0.2",
+        "compression-webpack-plugin": "^2.0.0",
+        "copy-webpack-plugin": "^5.0.3",
+        "dotenv": "^8.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "html-webpack-template": "^6.2.0",
+        "ts-loader": "^6.0.0",
+        "typescript": "^3.4.5",
+        "uglifyjs-webpack-plugin": "^2.1.2",
+        "webpack": "^4.31.0",
+        "webpack-bundle-analyzer": "^3.3.2",
+        "webpack-cli": "^3.3.2",
+        "webpack-dev-server": "^3.3.1",
+        "webpack-merge": "^4.2.1",
+        "workbox-webpack-plugin": "^4.3.1"
+    },
+    "dependencies": {
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
+    }
+}
