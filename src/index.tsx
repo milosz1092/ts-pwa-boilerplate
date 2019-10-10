@@ -3,21 +3,27 @@ import { render } from 'react-dom';
 import * as ServiceWorker from './registerServiceWorker';
 
 import { Provider } from 'react-redux';
-import configureStore, { history } from './configureStore';
+import StoreProvider, { history } from './StoreProvider';
 
 import App from './components/App';
 
-const store = configureStore();
+const store = StoreProvider.getStore();
 
 const bootstrap = () => render(
     <Provider store={store}>
-        <App history={history} name="Miłosz" />
+        <App history={history} />
     </Provider>,
     document.getElementById("app")
 );
 
 bootstrap();
 ServiceWorker.register();
+
+
+
+
+
+
 
 
 

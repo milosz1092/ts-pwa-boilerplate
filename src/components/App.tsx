@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { History } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+
+import routes from '../routes';
 
 interface Props {
     history: History,
-    name: string,
-    data?: string[],
 }
 
 class App extends React.PureComponent<Props> {
     render() {
         return (
-            <div>
-                Hello {this.props.name}
-                {/* <div>{this.props.data.join(', ')}</div> */}
-            </div>
+            <ConnectedRouter history={this.props.history}>
+                { routes }
+            </ConnectedRouter>
         );
     }
 }

@@ -88,17 +88,17 @@ module.exports = {
             importScripts: [
                 'service-worker.listeners.js'
             ],
-            runtimeCaching: [
-                {
-                    urlPattern: new RegExp('^https://jsonplaceholder\.typicode\.com/'),
-                    handler: 'StaleWhileRevalidate',
-                    options: {
-                        cacheableResponse: {
-                            statuses: [0, 200]
-                        }
-                    }
-                }
-            ]
+            // runtimeCaching: [
+            //     {
+            //         urlPattern: new RegExp('^https://jsonplaceholder\.typicode\.com/'),
+            //         handler: 'StaleWhileRevalidate',
+            //         options: {
+            //             cacheableResponse: {
+            //                 statuses: [0, 200]
+            //             }
+            //         }
+            //     }
+            // ]
         }),
     ],
     optimization: {
