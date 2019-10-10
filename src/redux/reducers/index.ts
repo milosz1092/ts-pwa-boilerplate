@@ -1,7 +1,6 @@
-import {
-    connectRouter, go, goBack, goForward,
-    push, replace, RouterState
-  } from 'connected-react-router';
+import { combineReducers } from 'redux';
+import { History } from 'history';
+import { RouterState, connectRouter } from 'connected-react-router';
 
 import testReducer, { ITestReducerState } from './test.reducer';
 
@@ -10,14 +9,9 @@ export interface IGlobalState {
     test: ITestReducerState,
 }
 
-const rootReducer = combineReducers({
+const rootReducer = (history: History) => combineReducers({
     test: testReducer,
-});
+    router: connectRouter(history)
+})
 
-
-export default (history: History) => combineReducers<ApplicationState>({
-    router: connectRouter(history),
-    test: testReducer,
-});
-
-https://github.com/supasate/connected-react-router/issues/195
+export default rootReducer;

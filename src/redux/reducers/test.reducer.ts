@@ -1,19 +1,17 @@
-import { ActionWithPayload } from '../actions';
+import { ReduxAction } from '../actions';
 import { TestActionTypes } from '../actions/test.actions';
 
 export interface ITestReducerState {
-    test_flag: boolean;
+    test_flag?: boolean;
+    init_time?: number;
 }
 
 class DefaultState implements ITestReducerState {
-    test_flag = true;
-
-    constructor() {
-        this.test_flag = false;
-    }
+    test_flag = false;
+    init_time = + Date.now();
 };
 
-export default (state : ITestReducerState = new DefaultState(), action: ActionWithPayload<TestActionTypes, any>) => {
+export default (state: ITestReducerState = new DefaultState(), action: ReduxAction) => {
     let newState: ITestReducerState;
 
     switch (action.type) {
