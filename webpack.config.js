@@ -17,9 +17,9 @@ module.exports = {
     mode: 'none',
     entry: './src/index.tsx',
     output: {
-        filename: '[id].[hash].bundle.js',
+        filename: '[id].[hash].[name].bundle.js',
         sourceMapFilename: '[id].[chunkhash].bundle.map',
-        chunkFilename: '[id].[chunkhash].chunk.js',
+        chunkFilename: '[id].[chunkhash].[name].chunk.js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -57,7 +57,7 @@ module.exports = {
             inject: false,
             appMountId: 'app',
             appMountHtmlSnippet: '<img class="app-spinner" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />',
-            headHtmlSnippet: '<link rel="manifest" href="manifest.json" /><link rel="icon" type="image/png" href="/images/icons/icon-72x72.png"/><style>body, html { margin: 0; padding: 0; height: 100%; } img.app-spinner { position: fixed; top: 50%; left: 50%; } div#app { height: 100%; }</style>',
+            headHtmlSnippet: '<link rel="manifest" href="/manifest.json" /><link rel="icon" type="image/png" href="/images/icons/icon-72x72.png"/><style>body, html { margin: 0; padding: 0; height: 100%; } img.app-spinner { position: fixed; top: 50%; left: 50%; } div#app { height: 100%; }</style>',
             bodyHtmlSnippet: '<noscript>Your browser does not support JavaScript!</noscript>',
             meta: [
                 {
@@ -114,7 +114,7 @@ module.exports = {
             maxSize: 500000,
             cacheGroups: {
                 vendor: {
-                    test: /[\\\/]node_modules[\\\/]/,
+                    test: /node_modules/,
                     name: 'vendors',
                     chunks: 'all'
                 }

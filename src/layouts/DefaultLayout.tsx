@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { DefaultLayoutWrapper } from './DefaultLayout.sc';
 
 import ILayoutProps from './ILayoutProps';
+import Menu from '../components/Menu/Menu';
 
 export default class DefaultLayout extends React.PureComponent<ILayoutProps> {
     render() {
@@ -11,6 +12,7 @@ export default class DefaultLayout extends React.PureComponent<ILayoutProps> {
         return (
             <Route {...rest} render={matchProps => (
                 <DefaultLayoutWrapper>
+                    <Menu />
                     <Component {...matchProps} {...props} />
                 </DefaultLayoutWrapper>
             )} />
