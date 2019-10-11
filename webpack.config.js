@@ -8,6 +8,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+
+const styledComponentsTransformer = createStyledComponentsTransformer();
 const envConfig = dotenv.parse(fs.readFileSync('environment/shared.env'));
 
 module.exports = {
@@ -24,8 +27,11 @@ module.exports = {
             {
                 test: /\.(ts|tsx)?$/,
                 loader: 'ts-loader',
-                exclude: /node_modules/
-            }
+                exclude: /node_modules/,
+                options: {
+                    getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+                },
+            },
         ]
     },
     resolve: {
@@ -51,7 +57,7 @@ module.exports = {
             inject: false,
             appMountId: 'app',
             appMountHtmlSnippet: '<img class="app-spinner" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />',
-            headHtmlSnippet: '<link rel="manifest" href="manifest.json" /><style>img.app-spinner { position: fixed; top: 50%; left: 50%; }</style>',
+            headHtmlSnippet: '<link rel="manifest" href="manifest.json" /><link rel="icon" type="image/png" href="/images/icons/icon-72x72.png"/><style>body, html { margin: 0; padding: 0; height: 100%; } img.app-spinner { position: fixed; top: 50%; left: 50%; } div#app { height: 100%; }</style>',
             bodyHtmlSnippet: '<noscript>Your browser does not support JavaScript!</noscript>',
             meta: [
                 {
