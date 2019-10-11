@@ -3,3 +3,5 @@
   - Workbox
 * Typescript
 * React
+* Routing
+* Styled Components
