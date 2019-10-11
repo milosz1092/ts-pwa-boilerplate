@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Loadable from 'react-loadable';
+import loadable, { LoadableComponent, Options } from '@loadable/component';
 
 import IRouteConfig from './IRouteConfig';
 import Spinner from '../components/Spinner/Spinner';
@@ -7,10 +7,9 @@ import DefaultLayout from '../layouts/DefaultLayout';
 
 import HomePage from '../components/pages/HomePage/HomePage';
 
-// const AsyncLazyPage = Loadable({
-//     loader: () => import(/* webpackChunkName: "LazyPage" */ '../components/pages/LazyPage/LazyPage'),
-//     loading: Spinner,
-// });
+const AsyncLazyPage: LoadableComponent<any> = loadable(() => import('../components/pages/LazyPage/LazyPage'), {
+    fallback: (<Spinner />),
+});
 
 const routesConfig: IRouteConfig[] = [
     {
@@ -20,13 +19,13 @@ const routesConfig: IRouteConfig[] = [
         component: HomePage,
         title: 'Home',
     },
-    // {
-    //     path: '/lazy',
-    //     exact: true,
-    //     layout: DefaultLayout,
-    //     component: AsyncLazyPage,
-    //     title: 'Lazy',
-    // },
+    {
+        path: '/lazy',
+        exact: true,
+        layout: DefaultLayout,
+        component: AsyncLazyPage,
+        title: 'Lazy',
+    },
 ];
 
 export default routesConfig;

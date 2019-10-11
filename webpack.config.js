@@ -17,9 +17,9 @@ module.exports = {
     mode: 'none',
     entry: './src/index.tsx',
     output: {
-        filename: '[id].[hash].[name].bundle.js',
+        filename: '[id].[hash].bundle.js',
         sourceMapFilename: '[id].[chunkhash].bundle.map',
-        chunkFilename: '[id].[chunkhash].[name].chunk.js',
+        chunkFilename: '[id].[chunkhash].chunk.js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
