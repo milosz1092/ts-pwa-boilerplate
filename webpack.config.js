@@ -4,8 +4,8 @@ const path = require('path');
 const dotenv = require('dotenv');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
@@ -31,6 +31,10 @@ module.exports = {
                 options: {
                     getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
                 },
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
             },
         ]
     },

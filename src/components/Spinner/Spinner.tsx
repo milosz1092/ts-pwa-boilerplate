@@ -1,9 +1,58 @@
 import * as React from 'react';
+import SpinnerSvg from '../../../assets/images/spinner.svg'; 
+import SVG from 'react-inlinesvg';
 
-const Spinner: React.StatelessComponent<{}> = ({}) => {
-    return (
-        <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    );
+import { SpinnerWrapper } from './Spinner.sc';
+
+interface IProps {};
+interface IDispatch {};
+interface IState {
+    isVisible: boolean;
+};
+
+class Spinner extends React.PureComponent<IProps & IDispatch, IState> {
+    private _isMounted = false;
+    private _timeout: number | null;
+
+    constructor(props: IProps) {
+        super(props);
+
+        this.state = {
+            isVisible: false,
+        };
+
+        this._timeout = null;
+    }
+
+    makeSpinnerVisible = () => {
+        if(this._isMounted) {
+            this.setState({
+                isVisible: true,
+            })
+        }
+
+        clearTimeout(this._timeout as number);
+        this._timeout = null;
+    };
+
+    componentDidMount() {
+        this._isMounted = true;
+        this._timeout = setTimeout(this.makeSpinnerVisible, 500);
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+    render() {
+        const { isVisible } = this.state;
+
+        return isVisible && (
+            <SpinnerWrapper>
+                <SVG src={SpinnerSvg} />
+            </SpinnerWrapper>
+        );
+    }
 }
 
 export default Spinner;

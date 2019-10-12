@@ -11,7 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 const middleware = applyMiddleware(routerMiddleware(history), sagaMiddleware);
 
 class StoreProvider {
-    private static instance: Store;
+    private static _instance: Store;
 
     private configureStore() {
         let composeEnhancer: typeof compose;
@@ -29,17 +29,17 @@ class StoreProvider {
                 middleware,
             ),
         );
-        StoreProvider.instance = store;
+        StoreProvider._instance = store;
 
         sagaMiddleware.run(rootSaga);
     }
 
     public getStore() {
-        if (!StoreProvider.instance) {
+        if (!StoreProvider._instance) {
             this.configureStore();
         }
 
-        return StoreProvider.instance;
+        return StoreProvider._instance;
     }
 }
 
