@@ -83,6 +83,7 @@
             "tsx",
             "js",
             "jsx"
-        ]
+        ],
+        "testEnvironment": "node"
     }
 }
