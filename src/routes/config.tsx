@@ -26,6 +26,13 @@ const routesConfig: IRouteConfig[] = [
         component: AsyncLazyPage,
         title: 'Lazy',
     },
+    {
+        path: '/lazy/:id',
+        exact: true,
+        layout: DefaultLayout,
+        component: AsyncLazyPage,
+        title: 'Lazy with parameter',
+    },
 ];
 
 export default routesConfig;
