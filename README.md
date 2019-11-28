@@ -5,3 +5,4 @@
 * React
 * Routing
 * Styled Components
+* Lazy loading
