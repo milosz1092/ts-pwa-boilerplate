@@ -12,7 +12,7 @@ export default class DefaultLayout extends React.PureComponent<ILayoutProps> {
         return (
             <Route {...rest} render={matchProps => (
                 <DefaultLayoutWrapper>
-                    <Menu />
+                    {/* <Menu /> */}
                     <Component {...matchProps} {...props} />
                 </DefaultLayoutWrapper>
             )} />
