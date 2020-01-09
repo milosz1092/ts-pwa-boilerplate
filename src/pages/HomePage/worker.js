@@ -5,9 +5,9 @@ export default () => {
 
         const { minRange, maxRange } = e.data;
 
-        console.log('Request: ', `(${minRange}, ${maxRange})`)
-        console.time('time');
+        console.log('Request from main thread: ', `(${minRange}, ${maxRange})`);
 
+        console.time('time_prime_js');
         let pointer = minRange;
         let flag = null;
         let how_many = 0;
@@ -28,7 +28,7 @@ export default () => {
     
             pointer++;
         }
-        console.timeEnd('time');
+        console.timeEnd('time_prime_js');
 
         postMessage(how_many);
     });

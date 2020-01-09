@@ -30,7 +30,7 @@ class HomePage extends React.PureComponent<IProps & IDispatch, IState> {
 
     componentDidMount() {
         (this.prime_worker as Worker).addEventListener("message", event => {
-            console.log('Data from worker: ', event.data);
+            console.log('Computed data from worker: ', event.data);
             this.setState({
                 result: event.data,
             });
@@ -55,7 +55,7 @@ class HomePage extends React.PureComponent<IProps & IDispatch, IState> {
         return (
             <HomePageWrapper>
                 <h2>Pure JS implementation</h2>
-
+                <h3>Prime numbers</h3>
                 <label>from: </label>
                 <input
                     name="minRange"
