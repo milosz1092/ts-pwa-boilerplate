@@ -62,6 +62,9 @@
         "redux-saga": "^1.1.1",
         "styled-components": "^4.4.0"
     },
+    "resolutions": {
+        "serialize-javascript": "^2.1.1"
+    },
     "jest": {
         "setupFilesAfterEnv": [
             "<rootDir>setupTests.js"
